@@ -1,23 +1,158 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller-->
         <scene sceneID="4">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5">
+                    <view key="view" contentMode="scaleToFill" horizontalHuggingPriority="926" id="5" userLabel="MainView">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NaX-fi-ucZ" userLabel="CheckoffList-Landscape">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="255" type="user" id="vXt-J4-bNo"/>
+                                </constraints>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-Ln-PC8" userLabel="CheckoffList-Portrait">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-YL-Yx1" customClass="CalendarView">
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="768" type="user" id="k49-cB-9XX"/>
+                                    <constraint firstAttribute="height" constant="654" type="user" id="vXp-he-Nr2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-Qj-loO" userLabel="CalendarControl">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kn-Z0-qHI" userLabel="UpButton">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" type="user" id="EXC-4M-8RA"/>
+                                            <constraint firstAttribute="height" constant="56" type="user" id="zLS-lO-e0R"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="27-circle-north@2x.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9f-sa-5uO" userLabel="MinusButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" type="user" id="N0m-O6-3Ns"/>
+                                            <constraint firstAttribute="width" constant="56" type="user" id="nH6-k4-6OG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="34-circle-minus@2x.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfI-FW-d34" userLabel="PlusButton">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" type="user" id="NBp-Ex-JQZ"/>
+                                            <constraint firstAttribute="height" constant="56" type="user" id="UdN-Yr-jP2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="33-circle-plus@2x.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-lT-aad" userLabel="DateLabel">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" type="user" id="k2k-4W-9OY"/>
+                                            <constraint firstAttribute="width" constant="568" id="uCC-Ix-Fmr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" type="user" id="0rb-8M-sq3"/>
+                                    <constraint firstItem="gfI-FW-d34" firstAttribute="leading" secondItem="chZ-lT-aad" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1zD-hn-3xo"/>
+                                    <constraint firstItem="Z9f-sa-5uO" firstAttribute="leading" secondItem="0kn-Z0-qHI" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="A2S-9J-T6o"/>
+                                    <constraint firstItem="Z9f-sa-5uO" firstAttribute="top" secondItem="chZ-lT-aad" secondAttribute="top" type="default" id="Cej-n0-rX6"/>
+                                    <constraint firstItem="0kn-Z0-qHI" firstAttribute="leading" secondItem="gLR-Qj-loO" secondAttribute="leading" type="default" id="Il5-GN-u1b"/>
+                                    <constraint firstItem="chZ-lT-aad" firstAttribute="leading" secondItem="Z9f-sa-5uO" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="cTj-wF-0Hg"/>
+                                    <constraint firstItem="0kn-Z0-qHI" firstAttribute="top" secondItem="Z9f-sa-5uO" secondAttribute="top" type="default" id="f4v-Uj-2NO"/>
+                                    <constraint firstItem="0kn-Z0-qHI" firstAttribute="top" secondItem="gLR-Qj-loO" secondAttribute="top" constant="10" id="iUB-kv-PSx"/>
+                                    <constraint firstItem="gfI-FW-d34" firstAttribute="centerY" secondItem="gLR-Qj-loO" secondAttribute="centerY" type="default" id="mui-ah-kOV"/>
+                                    <constraint firstAttribute="width" constant="768" type="user" id="tfb-8M-Cwh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gLR-Qj-loO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5" secondAttribute="leading" type="user" id="01e-iN-OMf"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="top" secondItem="5" secondAttribute="top" type="user" id="1EP-tV-ZYz"/>
+                            <constraint firstItem="pSa-YL-Yx1" firstAttribute="top" secondItem="gLR-Qj-loO" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="7gy-fG-Icr"/>
+                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="pZa-Ln-PC8" secondAttribute="bottom" constant="742" type="user" id="BZz-ty-mTz"/>
+                            <constraint firstItem="pSa-YL-Yx1" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="user" id="DQc-BA-cgv"/>
+                            <constraint firstItem="gLR-Qj-loO" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="user" id="L1v-Yu-xpp"/>
+                            <constraint firstItem="gLR-Qj-loO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5" secondAttribute="leading" type="user" id="LsC-IY-mLW"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="user" id="PiN-cE-Xnw"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="user" id="TRd-aG-RCH"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="user" id="V8E-vL-e2b"/>
+                            <constraint firstItem="pZa-Ln-PC8" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="WeT-nb-3mf"/>
+                            <constraint firstItem="gLR-Qj-loO" firstAttribute="top" secondItem="pZa-Ln-PC8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Z7y-4M-Jas"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="top" secondItem="5" secondAttribute="top" type="user" id="ZJR-S8-3Xg"/>
+                            <constraint firstItem="pSa-YL-Yx1" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="user" id="Zvu-sZ-jW2"/>
+                            <constraint firstItem="gLR-Qj-loO" firstAttribute="top" relation="lessThanOrEqual" secondItem="5" secondAttribute="top" constant="432" type="user" id="eKA-7a-yzI"/>
+                            <constraint firstItem="pZa-Ln-PC8" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="hiU-h1-A8k"/>
+                            <constraint firstItem="pZa-Ln-PC8" firstAttribute="top" secondItem="5" secondAttribute="top" type="user" id="mQy-Wf-i3P"/>
+                            <constraint firstItem="NaX-fi-ucZ" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="user" id="nat-AQ-KFk"/>
+                            <constraint firstItem="pSa-YL-Yx1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5" secondAttribute="leading" type="user" id="tfP-4T-hR3"/>
+                        </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="calendarView" destination="pSa-YL-Yx1" id="sIX-Wh-6dq"/>
+                        <outlet property="dateLabel" destination="chZ-lT-aad" id="Rg2-ZY-urP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="27-circle-north@2x.png" width="56" height="56"/>
+        <image name="33-circle-plus@2x.png" width="56" height="56"/>
+        <image name="34-circle-minus@2x.png" width="56" height="56"/>
+    </resources>
+    <classes>
+        <class className="CalendarView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalendarView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="calendarView" candidateClass="CalendarView"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="minusButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="plusButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CalendarView.h"
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <CalendarViewDelegate> {
+    IBOutlet UIButton *backButton;
+    IBOutlet UIButton *minusButton;
+    IBOutlet UIButton *plusButton;
+    IBOutlet UILabel *dateLabel;
+    
+    IBOutlet CalendarView *calendarView;
+}
 @end
