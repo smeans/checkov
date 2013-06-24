@@ -10,6 +10,8 @@
 #import "CalendarView.h"
 
 @interface ViewController : UIViewController <CalendarViewDelegate> {
+    IBOutlet UITableView *portraitList;
+    IBOutlet UITableView *landscapeList;
     IBOutlet UIButton *backButton;
     IBOutlet UIButton *minusButton;
     IBOutlet UIButton *plusButton;
@@ -17,4 +19,8 @@
     
     IBOutlet CalendarView *calendarView;
 }
+
+- (IBAction)upClicked:(id)sender;
+- (IBAction)minusClicked:(id)sender;
+- (IBAction)plusClicked:(id)sender;
 @end

@@ -63,4 +63,12 @@
     return [self dateByAddingComponents:dc toDate:date options:0];
 }
 
+- (NSDate *)addMonths:(int)months toDate:(NSDate *)date
+{
+    NSDateComponents *dc = [NSDateComponents new];
+    dc.month = months;
+    
+    return [self dateByAddingComponents:dc toDate:date options:0];
+}
+
 @end

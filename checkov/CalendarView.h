@@ -22,8 +22,8 @@ typedef enum _CVTypes {month, year, decade} CVTypes;
 
 @property (strong) id<CalendarViewDelegate> delegate;
 @property (assign) CVTypes viewType;
-@property (assign) NSCalendar *calendar;
-@property (assign) NSDate *focusDate;
+@property (strong) NSCalendar *calendar;
+@property (strong) NSDate *focusDate;
 
 - (CGFloat)dayHeightForWidth:(CGFloat)width;
 - (void)drawDay:(NSDate *)date inRect:(CGRect)rect;

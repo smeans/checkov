@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NSCalendar+Display.h"
 
 @interface ViewController ()
 
@@ -29,15 +30,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    portraitList.hidden =
+    landscapeList.hidden = NO;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    landscapeList.hidden = UIInterfaceOrientationIsLandscape(fromInterfaceOrientation);
+    portraitList.hidden = !landscapeList.hidden;
+}
+
+- (IBAction)upClicked:(id)sender
+{
+    
+}
+
+- (IBAction)minusClicked:(id)sender
+{
+    calendarView.focusDate = [calendarView.calendar addMonths:-1 toDate:calendarView.focusDate];
+}
+
+- (IBAction)plusClicked:(id)sender
+{
+    calendarView.focusDate = [calendarView.calendar addMonths:1 toDate:calendarView.focusDate];
+}
+
 #pragma mark CalendarView delegate
 - (void)calendarView:(CalendarView *)calendar focusDateChanged:(NSDate *)date
 {
     NSDateFormatter *df = [NSDateFormatter new];
     NSArray *ms = [df monthSymbols];
     
-    NSDateComponents *dc = [calendar.calendar components:NSMonthCalendarUnit fromDate:date];
+    NSDateComponents *dc = [calendar.calendar components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
     
-    dateLabel.text = [ms objectAtIndex:dc.month-1];
+    dateLabel.text = [NSString stringWithFormat:@"%@ - %d", [ms objectAtIndex:dc.month-1], dc.year];
 }
 
 @end

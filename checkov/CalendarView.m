@@ -59,6 +59,8 @@
 {
     _focusDate = focusDate;
     [self.delegate calendarView:self focusDateChanged:_focusDate];
+    
+    [self setNeedsDisplay];
 }
 
 - (NSDate *)focusDate

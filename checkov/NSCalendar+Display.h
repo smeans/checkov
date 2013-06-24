@@ -17,5 +17,6 @@
 - (NSDate *)maxMonthDay:(NSDate *)date;
 
 - (NSDate *)addDays:(int)days toDate:(NSDate *)date;
+- (NSDate *)addMonths:(int)months toDate:(NSDate *)date;
 
 @end
