@@ -91,6 +91,46 @@
     }
 }
 
+- (NSDate *)hittestDate:(CGPoint)pt
+{
+    CGRect rect = self.bounds;
+    
+    int wc = [self.calendar rangeOfUnit:NSWeekCalendarUnit inUnit:NSMonthCalendarUnit forDate:self.focusDate].length;
+    
+    CGFloat dw = rect.size.width/7;
+    CGFloat dh = [self dayHeightForWidth:dw];
+    dh = MIN(rect.size.height/wc, dh);
+    
+    NSDate *dd = [self.calendar minMonthDay:self.focusDate];
+    
+    int w = ((int)pt.y/(int)dh);
+    
+    if (w >= wc) {
+        return nil;
+    }
+    
+    return [self.calendar addDays:(int)pt.x/(int)dw + w*7 toDate:dd];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *t = [touches anyObject];
+    CGPoint pt = [t locationInView:self];
+    NSDate *td = [self hittestDate:pt];
+    
+    if (td) {
+        [self dayTouched:td];
+    }
+}
+
+- (bool)isDead:(NSDate *)date
+{
+    NSDateComponents *dcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+    NSDateComponents *fcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:self.focusDate];
+    
+    return dcd.year != fcd.year || dcd.month != fcd.month;
+}
+
 #pragma mark Display-specific subclassable methods
 - (CGFloat)dayHeightForWidth:(CGFloat)width
 {
@@ -111,7 +151,8 @@
     rect = CGRectInset(rect, (rect.size.width-ts.width)/2, (rect.size.height-ts.height)/2);
     
     [s drawInRect:rect withFont:[UIFont systemFontOfSize:fs]];
-    
 }
+
+- (void)dayTouched:(NSDate *)date {}
 
 @end

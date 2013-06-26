@@ -13,16 +13,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NaX-fi-ucZ" userLabel="CheckoffList-Landscape">
-                                <color key="backgroundColor" red="0.45098042490000001" green="0.60784316059999999" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="255" type="user" id="vXt-J4-bNo"/>
                                 </constraints>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-Ln-PC8" userLabel="CheckoffList-Portrait">
-                                <color key="backgroundColor" red="7.621079918e-05" green="0.66294469869999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-YL-Yx1" customClass="CalendarView">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-Ln-PC8" userLabel="CheckoffList-Portrait"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-YL-Yx1" customClass="CheckoffCalendarView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="768" type="user" id="k49-cB-9XX"/>
                                     <constraint firstAttribute="height" constant="654" type="user" id="vXp-he-Nr2"/>
@@ -83,25 +80,24 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-lT-aad" userLabel="DateLabel">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" type="user" id="k2k-4W-9OY"/>
                                             <constraint firstAttribute="width" constant="568" id="uCC-Ix-Fmr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.01006578575" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" type="user" id="0rb-8M-sq3"/>
                                     <constraint firstItem="gfI-FW-d34" firstAttribute="leading" secondItem="chZ-lT-aad" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1zD-hn-3xo"/>
                                     <constraint firstItem="Z9f-sa-5uO" firstAttribute="leading" secondItem="0kn-Z0-qHI" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="A2S-9J-T6o"/>
-                                    <constraint firstItem="Z9f-sa-5uO" firstAttribute="top" secondItem="chZ-lT-aad" secondAttribute="top" type="default" id="Cej-n0-rX6"/>
                                     <constraint firstItem="0kn-Z0-qHI" firstAttribute="leading" secondItem="gLR-Qj-loO" secondAttribute="leading" type="default" id="Il5-GN-u1b"/>
+                                    <constraint firstItem="0kn-Z0-qHI" firstAttribute="top" secondItem="gLR-Qj-loO" secondAttribute="top" constant="10" id="Sub-a8-QfL"/>
+                                    <constraint firstItem="chZ-lT-aad" firstAttribute="bottom" secondItem="gLR-Qj-loO" secondAttribute="bottom" type="default" id="bIQ-mn-ZhN"/>
                                     <constraint firstItem="chZ-lT-aad" firstAttribute="leading" secondItem="Z9f-sa-5uO" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="cTj-wF-0Hg"/>
                                     <constraint firstItem="0kn-Z0-qHI" firstAttribute="top" secondItem="Z9f-sa-5uO" secondAttribute="top" type="default" id="f4v-Uj-2NO"/>
-                                    <constraint firstItem="0kn-Z0-qHI" firstAttribute="top" secondItem="gLR-Qj-loO" secondAttribute="top" constant="10" id="iUB-kv-PSx"/>
-                                    <constraint firstItem="gfI-FW-d34" firstAttribute="centerY" secondItem="gLR-Qj-loO" secondAttribute="centerY" type="default" id="mui-ah-kOV"/>
+                                    <constraint firstItem="gfI-FW-d34" firstAttribute="centerY" secondItem="chZ-lT-aad" secondAttribute="centerY" type="default" id="fQX-MA-IG4"/>
+                                    <constraint firstItem="chZ-lT-aad" firstAttribute="top" secondItem="gLR-Qj-loO" secondAttribute="top" type="default" id="nGu-WA-c8Z"/>
                                     <constraint firstAttribute="width" constant="768" type="user" id="tfb-8M-Cwh"/>
                                 </constraints>
                             </view>
@@ -149,6 +145,9 @@
     <classes>
         <class className="CalendarView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CalendarView.h"/>
+        </class>
+        <class className="CheckoffCalendarView" superclassName="CalendarView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckoffCalendarView.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

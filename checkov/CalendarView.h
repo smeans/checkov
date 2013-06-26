@@ -25,7 +25,11 @@ typedef enum _CVTypes {month, year, decade} CVTypes;
 @property (strong) NSCalendar *calendar;
 @property (strong) NSDate *focusDate;
 
+- (bool)isDead:(NSDate *)date;
+
+#pragma mark Display-specific subclassable methods
 - (CGFloat)dayHeightForWidth:(CGFloat)width;
 - (void)drawDay:(NSDate *)date inRect:(CGRect)rect;
+- (void)dayTouched:(NSDate *)date;
 
 @end

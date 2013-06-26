@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CalendarView.h"
+#import "CheckoffCalendarView.h"
+#import "BooleanCalendar.h"
 
 @interface ViewController : UIViewController <CalendarViewDelegate> {
     IBOutlet UITableView *portraitList;
@@ -17,8 +18,10 @@
     IBOutlet UIButton *plusButton;
     IBOutlet UILabel *dateLabel;
     
-    IBOutlet CalendarView *calendarView;
+    IBOutlet CheckoffCalendarView *calendarView;
 }
+
+@property (strong) NSString *focusCalendar;
 
 - (IBAction)upClicked:(id)sender;
 - (IBAction)minusClicked:(id)sender;

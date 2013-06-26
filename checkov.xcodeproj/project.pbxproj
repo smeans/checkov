@@ -25,6 +25,8 @@
 		77E35FD21778DB22005B497B /* 34-circle-minus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E35FD11778DB22005B497B /* 34-circle-minus@2x.png */; };
 		77E35FD41778DB39005B497B /* 25-circle-west@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E35FD31778DB39005B497B /* 25-circle-west@2x.png */; };
 		77E35FD61778DC51005B497B /* 27-circle-north@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E35FD51778DC51005B497B /* 27-circle-north@2x.png */; };
+		77E35FD9177B17F7005B497B /* BooleanCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E35FD8177B17F7005B497B /* BooleanCalendar.m */; };
+		77E35FDC177B3124005B497B /* CheckoffCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E35FDB177B3124005B497B /* CheckoffCalendarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		77E35FD11778DB22005B497B /* 34-circle-minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "34-circle-minus@2x.png"; sourceTree = "<group>"; };
 		77E35FD31778DB39005B497B /* 25-circle-west@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-circle-west@2x.png"; sourceTree = "<group>"; };
 		77E35FD51778DC51005B497B /* 27-circle-north@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "27-circle-north@2x.png"; sourceTree = "<group>"; };
+		77E35FD7177B17F7005B497B /* BooleanCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooleanCalendar.h; sourceTree = "<group>"; };
+		77E35FD8177B17F7005B497B /* BooleanCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanCalendar.m; sourceTree = "<group>"; };
+		77E35FDA177B3124005B497B /* CheckoffCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoffCalendarView.h; sourceTree = "<group>"; };
+		77E35FDB177B3124005B497B /* CheckoffCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoffCalendarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,10 @@
 				77E35FCC1778C7BC005B497B /* NSCalendar+Display.m */,
 				77E35FC81778BB7D005B497B /* CalendarView.h */,
 				77E35FC91778BB7D005B497B /* CalendarView.m */,
+				77E35FDA177B3124005B497B /* CheckoffCalendarView.h */,
+				77E35FDB177B3124005B497B /* CheckoffCalendarView.m */,
+				77E35FD7177B17F7005B497B /* BooleanCalendar.h */,
+				77E35FD8177B17F7005B497B /* BooleanCalendar.m */,
 				77E35FA91778BB25005B497B /* Supporting Files */,
 			);
 			path = checkov;
@@ -208,6 +218,8 @@
 				77E35FC21778BB25005B497B /* ViewController.m in Sources */,
 				77E35FCA1778BB7D005B497B /* CalendarView.m in Sources */,
 				77E35FCD1778C7BC005B497B /* NSCalendar+Display.m in Sources */,
+				77E35FD9177B17F7005B497B /* BooleanCalendar.m in Sources */,
+				77E35FDC177B3124005B497B /* CheckoffCalendarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +352,7 @@
 				77E35FC71778BB25005B497B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
