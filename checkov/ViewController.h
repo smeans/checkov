@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CheckoffCalendarView.h"
 #import "BooleanCalendar.h"
+#import "CheckovItem.h"
 
-@interface ViewController : UIViewController <CalendarViewDelegate> {
+@interface ViewController : UIViewController <CalendarViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     IBOutlet UITableView *portraitList;
     IBOutlet UITableView *landscapeList;
     IBOutlet UIButton *backButton;
@@ -21,9 +22,10 @@
     IBOutlet CheckoffCalendarView *calendarView;
 }
 
-@property (strong) NSString *focusCalendar;
+@property (assign) int focusItemIndex;
 
 - (IBAction)upClicked:(id)sender;
 - (IBAction)minusClicked:(id)sender;
 - (IBAction)plusClicked:(id)sender;
+
 @end

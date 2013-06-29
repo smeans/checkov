@@ -32,4 +32,7 @@ typedef enum _CVTypes {month, year, decade} CVTypes;
 - (void)drawDay:(NSDate *)date inRect:(CGRect)rect;
 - (void)dayTouched:(NSDate *)date;
 
+- (void)pageLeft;
+- (void)pageRight;
+
 @end

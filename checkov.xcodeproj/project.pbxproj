@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77ACB7C7177F267D004B14A0 /* CheckovTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */; };
+		77ACB7CA177F28CB004B14A0 /* CheckovItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C9177F28CB004B14A0 /* CheckovItem.m */; };
+		77ACB7CD177F7816004B14A0 /* EllipseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7CC177F7816004B14A0 /* EllipseView.m */; };
 		77E35FA31778BB25005B497B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA21778BB25005B497B /* UIKit.framework */; };
 		77E35FA51778BB25005B497B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA41778BB25005B497B /* Foundation.framework */; };
 		77E35FA71778BB25005B497B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA61778BB25005B497B /* CoreGraphics.framework */; };
@@ -30,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77ACB7C4177E31CC004B14A0 /* checkov.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = checkov.entitlements; sourceTree = "<group>"; };
+		77ACB7C5177F267D004B14A0 /* CheckovTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckovTableViewCell.h; sourceTree = "<group>"; };
+		77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckovTableViewCell.m; sourceTree = "<group>"; };
+		77ACB7C8177F28CB004B14A0 /* CheckovItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckovItem.h; sourceTree = "<group>"; };
+		77ACB7C9177F28CB004B14A0 /* CheckovItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckovItem.m; sourceTree = "<group>"; };
+		77ACB7CB177F7816004B14A0 /* EllipseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseView.h; sourceTree = "<group>"; };
+		77ACB7CC177F7816004B14A0 /* EllipseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseView.m; sourceTree = "<group>"; };
 		77E35F9F1778BB25005B497B /* checkov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = checkov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E35FA21778BB25005B497B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77E35FA41778BB25005B497B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,12 +115,15 @@
 		77E35FA81778BB25005B497B /* checkov */ = {
 			isa = PBXGroup;
 			children = (
+				77ACB7C4177E31CC004B14A0 /* checkov.entitlements */,
 				77E35FB11778BB25005B497B /* AppDelegate.h */,
 				77E35FB21778BB25005B497B /* AppDelegate.m */,
 				77E35FBA1778BB25005B497B /* MainStoryboard_iPhone.storyboard */,
 				77E35FBD1778BB25005B497B /* MainStoryboard_iPad.storyboard */,
 				77E35FC01778BB25005B497B /* ViewController.h */,
 				77E35FC11778BB25005B497B /* ViewController.m */,
+				77ACB7C8177F28CB004B14A0 /* CheckovItem.h */,
+				77ACB7C9177F28CB004B14A0 /* CheckovItem.m */,
 				77E35FCB1778C7BC005B497B /* NSCalendar+Display.h */,
 				77E35FCC1778C7BC005B497B /* NSCalendar+Display.m */,
 				77E35FC81778BB7D005B497B /* CalendarView.h */,
@@ -119,6 +132,10 @@
 				77E35FDB177B3124005B497B /* CheckoffCalendarView.m */,
 				77E35FD7177B17F7005B497B /* BooleanCalendar.h */,
 				77E35FD8177B17F7005B497B /* BooleanCalendar.m */,
+				77ACB7C5177F267D004B14A0 /* CheckovTableViewCell.h */,
+				77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */,
+				77ACB7CB177F7816004B14A0 /* EllipseView.h */,
+				77ACB7CC177F7816004B14A0 /* EllipseView.m */,
 				77E35FA91778BB25005B497B /* Supporting Files */,
 			);
 			path = checkov;
@@ -220,6 +237,9 @@
 				77E35FCD1778C7BC005B497B /* NSCalendar+Display.m in Sources */,
 				77E35FD9177B17F7005B497B /* BooleanCalendar.m in Sources */,
 				77E35FDC177B3124005B497B /* CheckoffCalendarView.m in Sources */,
+				77ACB7C7177F267D004B14A0 /* CheckovTableViewCell.m in Sources */,
+				77ACB7CA177F28CB004B14A0 /* CheckovItem.m in Sources */,
+				77ACB7CD177F7816004B14A0 /* EllipseView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +334,7 @@
 		77E35FC61778BB25005B497B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = checkov/checkov.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "checkov/checkov-Prefix.pch";
 				INFOPLIST_FILE = "checkov/checkov-Info.plist";
@@ -325,6 +346,7 @@
 		77E35FC71778BB25005B497B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = checkov/checkov.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "checkov/checkov-Prefix.pch";
 				INFOPLIST_FILE = "checkov/checkov-Info.plist";

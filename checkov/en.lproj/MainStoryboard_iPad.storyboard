@@ -13,11 +13,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NaX-fi-ucZ" userLabel="CheckoffList-Landscape">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="255" type="user" id="vXt-J4-bNo"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="OOe-uO-tMC"/>
+                                    <outlet property="delegate" destination="2" id="H7Q-5h-ARP"/>
+                                </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-Ln-PC8" userLabel="CheckoffList-Portrait"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-Ln-PC8" userLabel="CheckoffList-Portrait">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="hgA-UW-jLk"/>
+                                    <outlet property="delegate" destination="2" id="hmS-nB-LBo"/>
+                                </connections>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-YL-Yx1" customClass="CheckoffCalendarView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -159,7 +170,7 @@
                 <relationship kind="action" name="plusClicked:"/>
                 <relationship kind="action" name="upClicked:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="calendarView" candidateClass="CalendarView"/>
+                <relationship kind="outlet" name="calendarView" candidateClass="CheckoffCalendarView"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="landscapeList" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="minusButton" candidateClass="UIButton"/>

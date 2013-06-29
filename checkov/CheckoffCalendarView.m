@@ -10,6 +10,7 @@
 
 @implementation CheckoffCalendarView
 
+@synthesize focusCalendar=_focusCalendar;
 @synthesize trueColor=_trueColor;
 
 - (id)initWithFrame:(CGRect)frame
@@ -22,6 +23,17 @@
     return self;
 }
 
+- (BooleanCalendar *)focusCalendar
+{
+    return _focusCalendar;
+}
+
+- (void)setFocusCalendar:(BooleanCalendar *)focusCalendar
+{
+    _focusCalendar = focusCalendar;
+    [self setNeedsDisplay];
+}
+
 - (CGFloat)dayHeightForWidth:(CGFloat)width
 {
     return width*.7;
@@ -29,7 +41,7 @@
 
 - (UIColor *)getDayColor:(NSDate *)date
 {
-    return [_focusCalendar getDate:date] ? TRUE_COLOR : [self isDead:date] ? DEAD_COLOR : FALSE_COLOR;
+    return [_focusCalendar getDate:date] ? _trueColor : [self isDead:date] ? DEAD_COLOR : FALSE_COLOR;
 }
 
 - (void)drawDay:(NSDate *)date inRect:(CGRect)rect

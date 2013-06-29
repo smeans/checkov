@@ -19,12 +19,36 @@
 @synthesize calendar = _calendar;
 @synthesize focusDate = _focusDate;
 
+- (void)initCalendar
+{
+    self.focusDate = [NSDate date];
+    
+    UISwipeGestureRecognizer *sr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
+    sr.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:sr];
+    
+    sr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedLeft:)];
+    sr.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:sr];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.focusDate = [NSDate date];
+        [self initCalendar];
     }
+    
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initCalendar];
+    }
+    
     return self;
 }
 
@@ -48,6 +72,8 @@
 - (void)setCalendar:(NSCalendar *)calendar
 {
     _calendar = calendar;
+    
+    [self setNeedsDisplay];
 }
 
 - (NSCalendar *)calendar
@@ -112,8 +138,30 @@
     return [self.calendar addDays:(int)pt.x/(int)dw + w*7 toDate:dd];
 }
 
+- (void)pageLeft
+{
+    self.focusDate = [self.calendar addMonths:-1 toDate:self.focusDate];
+}
+
+- (void)pageRight
+{
+    self.focusDate = [self.calendar addMonths:1 toDate:self.focusDate];
+}
+
+- (void)swipedRight:(UISwipeGestureRecognizer *)recognizer
+{
+    [self pageLeft];
+}
+
+- (void)swipedLeft:(UISwipeGestureRecognizer *)recognizer
+{
+    [self pageRight];
+}
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super touchesEnded:touches withEvent:event];
+    
     UITouch *t = [touches anyObject];
     CGPoint pt = [t locationInView:self];
     NSDate *td = [self hittestDate:pt];

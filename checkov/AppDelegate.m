@@ -12,8 +12,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
+
+    [store synchronize];
+    
     return YES;
+}
+
+- (void)updateKVStoreItems:(NSNotification *)notification
+{
+    // !!!LATER!!! update app settings if necessary
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
