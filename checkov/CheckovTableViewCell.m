@@ -32,7 +32,6 @@
 
 - (IBAction)longPress:(id)sender
 {
-    [self startEditing];
 }
 
 -(void)layoutSubviews
@@ -50,20 +49,23 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *t = [touches anyObject];
+    [super touchesEnded:touches withEvent:event];
     
-    if ((t.tapCount == 1 && _item.isDefault) || t.tapCount == 2) {
+    UITouch *t = [touches anyObject];
+    UITableView *tv = (UITableView *)self.superview;
+    CheckovTableViewCell *tvc = (CheckovTableViewCell *)[tv cellForRowAtIndexPath:[tv indexPathForSelectedRow]];
+    
+    if (t.tapCount == 1 && (_item.isDefault || tvc.item == self.item)) {
         [self startEditing];
-    } else {
-        [super touchesEnded:touches withEvent:event];
     }
+    
 }
+
+CheckovTableViewCell *editingCell;
 
 - (void)startEditing
 {
@@ -74,6 +76,7 @@
     _text = [[UITextField alloc] initWithFrame:self.textLabel.frame];
     _text.text = self.textLabel.text;
     _text.font = self.textLabel.font;
+    _text.textColor = [UIColor whiteColor];
     _text.clearsOnBeginEditing = _item.isDefault;
     [_text setReturnKeyType:UIReturnKeyDone];
     
@@ -82,6 +85,8 @@
     [self addSubview:_text];
     self.textLabel.hidden = YES;
     [_text becomeFirstResponder];
+    
+    editingCell = self;
 }
 
 - (void)stopEditing
@@ -90,16 +95,28 @@
         return;
     }
     
-    _item.name =
-    self.textLabel.text = _text.text;
+    if ([self.text.text length]) {
+        _item.name =
+        self.textLabel.text = _text.text;
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:CHECKOV_CHANGED object:self.item];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CHECKOV_CHANGED object:self.item];
+    }
     
     [_text removeFromSuperview];
     _text = nil;
     
     self.textLabel.hidden = NO;
-    
+    editingCell = nil;
+}
+
++ (void)stopEditing
+{
+    [editingCell stopEditing];
+}
+
++ (bool)isEditing
+{
+    return (bool)editingCell;
 }
 
 #pragma mark UITextFieldDelegate

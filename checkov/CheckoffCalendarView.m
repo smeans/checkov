@@ -7,6 +7,7 @@
 //
 
 #import "CheckoffCalendarView.h"
+#import "CheckovItem.h"
 
 @implementation CheckoffCalendarView
 
@@ -65,7 +66,9 @@
     
     rect = CGRectInset(rect, (rect.size.width-ts.width)/2, (rect.size.height-ts.height)/2);
     
-    CGContextSetFillColorWithColor(c, TEXT_COLOR.CGColor);
+    bool isToday = [[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle] isEqualToString:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle]];
+    
+    CGContextSetFillColorWithColor(c, (isToday ? TODAY_TEXT_COLOR : TEXT_COLOR).CGColor);
     [s drawInRect:rect withFont:[UIFont systemFontOfSize:fs]];
 }
 
@@ -76,6 +79,8 @@
     } else {
         [self.focusCalendar resetDate:date];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CHECKOV_CHANGED object:nil];
     
     [self setNeedsDisplay];
 }

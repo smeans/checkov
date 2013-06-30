@@ -13,4 +13,7 @@
 
 @property (strong) CheckovItem *item;
 
++ (void)stopEditing;
++ (bool)isEditing;
+
 @end

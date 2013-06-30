@@ -102,11 +102,25 @@
     CGFloat dh = [self dayHeightForWidth:dw];
     dh = MIN(rect.size.height/wc, dh);
     
+    int dow = [self.calendar firstWeekday];
+    
+    CGRect dr = CGRectMake(0, 0, dw, dh);
+    
+    for (int d = 0; d < 7; d++, dow++) {
+        if (dow > 7) {
+            dow = 1;
+        }
+        
+        [self drawWeekdayLabel:dow inRect:dr];
+
+        dr = CGRectOffset(dr, dw, 0);
+    }
+    
     NSDate *dd = [self.calendar minMonthDay:self.focusDate];
     NSDateComponents *dc = [NSDateComponents new];
     dc.day = 1;
     
-    for (int w = 0; w < wc; w++) {
+    for (int w = 1; w <= wc; w++) {
         CGRect dr = CGRectMake(0, w*dh, dw, dh);
         
         for (int d = 0; d < 7; d++) {
@@ -131,9 +145,11 @@
     
     int w = ((int)pt.y/(int)dh);
     
-    if (w >= wc) {
+    if (w > wc || w < 1) {
         return nil;
     }
+    
+    w--;
     
     return [self.calendar addDays:(int)pt.x/(int)dw + w*7 toDate:dd];
 }
@@ -183,6 +199,26 @@
 - (CGFloat)dayHeightForWidth:(CGFloat)width
 {
     return width;
+}
+
+- (void)drawWeekdayLabel:(int)weekday inRect:(CGRect)rect
+{
+    rect = CGRectInset(rect, 5, 5);
+    
+    NSDateFormatter *df = [NSDateFormatter new];
+    
+    NSArray *wd = [df shortWeekdaySymbols];
+    
+    NSString *s = [wd objectAtIndex:weekday-1];
+    
+    CGFloat fs;
+    CGSize ts = [@"MMM" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:rect.size.width lineBreakMode:NSLineBreakByClipping];
+    UIFont *f = [UIFont systemFontOfSize:fs];
+    ts = [s sizeWithFont:f];
+    
+    rect = CGRectInset(rect, (rect.size.width-ts.width)/2, (rect.size.height-ts.height)/2);
+    
+    [s drawInRect:rect withFont:[UIFont systemFontOfSize:fs]];
 }
 
 - (void)drawDay:(NSDate *)date inRect:(CGRect)rect

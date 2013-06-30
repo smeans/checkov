@@ -89,10 +89,10 @@
                                     <constraint firstItem="LdM-Cr-vyW" firstAttribute="top" secondItem="Qfq-Ax-mvD" secondAttribute="top" constant="6" id="zdM-Li-PzK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-RI-aIh" userLabel="CheckoffList-Portrait">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-RI-aIh" userLabel="CheckoffList-Portrait">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="mSZ-to-krN"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="183" type="user" id="Y0e-1v-a4j"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="2" id="UKP-rM-BUO"/>
@@ -102,21 +102,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-MJ-4zb" userLabel="CalendarView" customClass="CheckoffCalendarView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="320" type="user" id="Z8z-7b-H8G"/>
+                                    <constraint firstAttribute="height" constant="224" type="user" id="Z8z-7b-H8G"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3Le-RI-aIh" firstAttribute="top" secondItem="3" secondAttribute="top" constant="125" id="0xr-IC-Cec"/>
                             <constraint firstItem="SQp-MJ-4zb" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="1BO-7h-Lco"/>
                             <constraint firstItem="Qfq-Ax-mvD" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="AIJ-H5-TJ0"/>
+                            <constraint firstItem="3Le-RI-aIh" firstAttribute="top" secondItem="Qfq-Ax-mvD" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="BbV-AJ-8Hi"/>
                             <constraint firstItem="3Le-RI-aIh" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="MsQ-3u-f5E"/>
-                            <constraint firstItem="SQp-MJ-4zb" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="OzR-t6-WXU"/>
+                            <constraint firstItem="SQp-MJ-4zb" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="OzR-t6-WXU"/>
                             <constraint firstItem="Qfq-Ax-mvD" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="P5m-w4-iFg"/>
-                            <constraint firstItem="Qfq-Ax-mvD" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="Tb6-yM-1j0"/>
+                            <constraint firstItem="Qfq-Ax-mvD" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="Tb6-yM-1j0"/>
                             <constraint firstItem="3Le-RI-aIh" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="jHI-CS-ctp"/>
-                            <constraint firstItem="SQp-MJ-4zb" firstAttribute="top" secondItem="3Le-RI-aIh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qOq-0i-F9Y"/>
+                            <constraint firstItem="SQp-MJ-4zb" firstAttribute="top" secondItem="3Le-RI-aIh" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="qOq-0i-F9Y"/>
                             <constraint firstItem="SQp-MJ-4zb" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="qRf-qB-Iyu"/>
                         </constraints>
                     </view>

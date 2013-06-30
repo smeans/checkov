@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    [self loadCheckoffs];
+    
     [self checkMakeBlankItem];
     
     self.focusItemIndex = (int)[[NSUbiquitousKeyValueStore defaultStore] longLongForKey:@"focusItem"];
@@ -58,8 +60,31 @@
     [landscapeList reloadData];
 }
 
+- (NSString *)checkoffPath
+{
+    NSString *dp = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    return [dp stringByAppendingPathComponent:@"checkoffs.ka"];
+}
+
+- (void)saveCheckoffs
+{
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:self.checkoffs];
+    [d writeToFile:[self checkoffPath] atomically:YES];
+    NSLog(@"wrote to %@", [self checkoffPath]);
+}
+
+- (void)loadCheckoffs
+{
+    NSData *d = [NSData dataWithContentsOfFile:[self checkoffPath]];
+    
+    _checkoffs = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+}
+
 - (void)checkovChanged:(NSNotification *)notification
 {
+    [self saveCheckoffs];
+    
     [self checkMakeBlankItem];
 }
 
@@ -140,11 +165,10 @@
 - (UIColor *)getNextColor
 {
     int nc = (int)[[NSUbiquitousKeyValueStore defaultStore] longLongForKey:@"nextColor"];
-    NSLog(@"%d", nc);
     
-    CGFloat r = sinf((float)nc*1.666)/2 + .5;
-    CGFloat g = sinf((float)nc*2.666+2)/2 + .5;
-    CGFloat b = sinf((float)nc*3.666+4)/2 +.5;
+    CGFloat r = sinf((float)nc*2.4)/2 + .5;
+    CGFloat g = sinf((float)nc*2.4+2)/2 + .5;
+    CGFloat b = sinf((float)nc*2.4+4)/2 +.5;
     
     [[NSUbiquitousKeyValueStore defaultStore] setLongLong:nc+1 forKey:@"nextColor"];
     [[NSUbiquitousKeyValueStore defaultStore] synchronize];
@@ -197,9 +221,12 @@
     return [@"M" sizeWithFont:[self cellFont]].height;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [CheckovTableViewCell stopEditing];
+    
     self.focusItemIndex = indexPath.row;
+    
 }
 
 @end

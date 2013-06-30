@@ -20,6 +20,21 @@
 
 @synthesize years=_years;
 
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        _years = [decoder decodeObjectForKey:@"years"];
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:_years forKey:@"years"];
+}
+
 - (bool)getDate:(NSDate *)date
 {
     NSUInteger doy = [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit inUnit:NSYearCalendarUnit forDate:date];
