@@ -52,6 +52,20 @@
     return self;
 }
 
+- (CVTypes)viewType
+{
+    return _viewType;
+}
+
+- (void)setViewType:(CVTypes)viewType
+{
+    _viewType = viewType;
+    
+    [self.delegate calendarView:self focusDateChanged:_focusDate];
+    
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     switch (_viewType) {
@@ -60,11 +74,7 @@
         } break;
             
         case year: {
-            
-        } break;
-            
-        case decade: {
-            
+            [self drawYear:rect];
         } break;
     }
 }
@@ -131,7 +141,58 @@
     }
 }
 
-- (NSDate *)hittestDate:(CGPoint)pt
+- (void)drawYear:(CGRect)rect
+{
+    NSDate *oldFocus = _focusDate;
+    
+    CGFloat mw = rect.size.width/4;
+    CGFloat mh = [self monthHeightForWidth:mw];
+
+    _focusDate = [self.calendar firstOfYear:self.focusDate];
+    NSDateComponents *dc = [NSDateComponents new];
+    dc.day = 1;
+    
+    NSDateFormatter *df = [NSDateFormatter new];
+    NSArray *months = [df monthSymbols];
+    
+    for (int m = 0; m < 12; m++) {
+        CGRect mr = CGRectMake(m%4*mw, m/4*mh, mw, mh);
+        
+        CGFloat fs;
+        NSString *mn = [months objectAtIndex:m];
+        CGSize ts = [@"M" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:mw/7 lineBreakMode:NSLineBreakByClipping];
+        UIFont *f = [UIFont systemFontOfSize:fs];
+        ts = [mn sizeWithFont:f];
+        
+        CGRect mlr = CGRectInset(mr, mr.size.width/2-ts.width/2, 0);
+        [mn drawInRect:mlr withFont:f];
+        
+        CGFloat dw = mw/7;
+        CGFloat dh = [self dayHeightForWidth:dw];
+        
+        NSDate *dd = [self.calendar minMonthDay:_focusDate];
+        int wc = [self.calendar rangeOfUnit:NSWeekCalendarUnit inUnit:NSMonthCalendarUnit forDate:_focusDate].length;
+        
+        for (int w = 0; w < wc ; w++) {
+            CGRect dr = CGRectMake(mr.origin.x, mr.origin.y+w*dh+ts.height, dw, dh);
+            
+            for (int d = 0; d < 7; d++) {
+                if (![self isDead:dd]) {
+                    [self drawDay:dd inRect:dr];
+                }
+                
+                dr = CGRectOffset(dr, dw, 0);
+                dd = [self.calendar addDays:1 toDate:dd];
+            }
+        }
+        
+        _focusDate = [self.calendar addMonths:1 toDate:_focusDate];
+    }
+    
+    _focusDate = oldFocus;
+}
+
+- (NSDate *)hittestDay:(CGPoint)pt
 {
     CGRect rect = self.bounds;
     
@@ -154,14 +215,44 @@
     return [self.calendar addDays:(int)pt.x/(int)dw + w*7 toDate:dd];
 }
 
+- (NSDate *)hittestMonth:(CGPoint)pt
+{
+    CGFloat mw = self.bounds.size.width/4;
+    CGFloat mh = [self monthHeightForWidth:mw];
+    
+    int m = (int)pt.x/(int)mw + ((int)pt.y/(int)mh*4);
+    if (m >= 12) {
+        return nil;
+    }
+    
+    NSDate *dd = [self.calendar firstOfYear:_focusDate];
+    return [self.calendar addMonths:m toDate:dd];
+}
+
 - (void)pageLeft
 {
-    self.focusDate = [self.calendar addMonths:-1 toDate:self.focusDate];
+    switch (_viewType) {
+        case month: {
+            self.focusDate = [self.calendar addMonths:-1 toDate:self.focusDate];
+        } break;
+            
+        case year: {
+            self.focusDate = [self.calendar addYears:-1 toDate:self.focusDate];
+        } break;
+    }
 }
 
 - (void)pageRight
 {
-    self.focusDate = [self.calendar addMonths:1 toDate:self.focusDate];
+    switch (_viewType) {
+        case month: {
+            self.focusDate = [self.calendar addMonths:1 toDate:self.focusDate];
+        } break;
+            
+        case year: {
+            self.focusDate = [self.calendar addYears:1 toDate:self.focusDate];
+        } break;
+    }
 }
 
 - (void)swipedRight:(UISwipeGestureRecognizer *)recognizer
@@ -180,19 +271,37 @@
     
     UITouch *t = [touches anyObject];
     CGPoint pt = [t locationInView:self];
-    NSDate *td = [self hittestDate:pt];
     
-    if (td) {
-        [self dayTouched:td];
+    switch (_viewType) {
+        case month: {
+            NSDate *td = [self hittestDay:pt];
+            
+            if (td) {
+                [self dayTouched:td];
+            }
+        } break;
+            
+        case year: {
+            NSDate *td = [self hittestMonth:pt];
+            
+            if (td) {
+                [self monthTouched:td];
+            }
+        } break;
     }
+}
+
+- (bool)isDate:(NSDate *)date deadTo:(NSDate *)monthDate
+{
+    NSDateComponents *dcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+    NSDateComponents *fcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:monthDate];
+    
+    return dcd.year != fcd.year || dcd.month != fcd.month;
 }
 
 - (bool)isDead:(NSDate *)date
 {
-    NSDateComponents *dcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-    NSDateComponents *fcd = [self.calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:self.focusDate];
-    
-    return dcd.year != fcd.year || dcd.month != fcd.month;
+    return [self isDate:date deadTo:self.focusDate];
 }
 
 #pragma mark Display-specific subclassable methods
@@ -239,4 +348,15 @@
 
 - (void)dayTouched:(NSDate *)date {}
 
+- (CGFloat)monthHeightForWidth:(CGFloat)width
+{
+    CGFloat fs;
+    CGSize ts = [@"M" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:width/7 lineBreakMode:NSLineBreakByClipping];
+    UIFont *f = [UIFont systemFontOfSize:fs];
+    ts = [@"M" sizeWithFont:f];
+    
+    return [self dayHeightForWidth:width/7]*6 + ts.height;
+}
+
+- (void)monthTouched:(NSDate *)date {}
 @end

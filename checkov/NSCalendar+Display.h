@@ -10,6 +10,8 @@
 
 @interface NSCalendar (Display)
 
+- (NSDate *)firstOfYear:(NSDate *)date;
+
 - (NSDate *)firstOfMonth:(NSDate *)date;
 - (NSDate *)lastOfMonth:(NSDate *)date;
 
@@ -18,5 +20,6 @@
 
 - (NSDate *)addDays:(int)days toDate:(NSDate *)date;
 - (NSDate *)addMonths:(int)months toDate:(NSDate *)date;
+- (NSDate *)addYears:(int)years toDate:(NSDate *)date;
 
 @end

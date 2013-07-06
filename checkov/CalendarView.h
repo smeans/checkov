@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum _CVTypes {month, year, decade} CVTypes;
+typedef enum _CVTypes {month, year} CVTypes;
 
 @interface CalendarView : UIView
 

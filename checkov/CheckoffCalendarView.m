@@ -61,6 +61,7 @@
     NSString *s = [NSString stringWithFormat:@"%d", dc.day];
     CGFloat fs;
     CGSize ts = [@"00" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:rect.size.width*.7 lineBreakMode:NSLineBreakByClipping];
+    
     UIFont *f = [UIFont systemFontOfSize:fs];
     ts = [s sizeWithFont:f];
     
@@ -84,5 +85,12 @@
     
     [self setNeedsDisplay];
 }
+
+- (void)monthTouched:(NSDate *)date
+{
+    self.viewType = month;
+    self.focusDate = date;
+}
+
 
 @end

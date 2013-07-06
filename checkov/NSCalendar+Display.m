@@ -10,6 +10,14 @@
 
 @implementation NSCalendar (Display)
 
+- (NSDate *)firstOfYear:(NSDate *)date
+{
+    NSDateComponents *dc = [self components:NSEraCalendarUnit | NSYearCalendarUnit fromDate:date];
+    dc.month = 1;
+    dc.day = 1;
+    
+    return [self dateFromComponents:dc];
+}
 - (NSDate *)firstOfMonth:(NSDate *)date
 {
     NSDateComponents *dc = [self components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
@@ -71,4 +79,11 @@
     return [self dateByAddingComponents:dc toDate:date options:0];
 }
 
+- (NSDate *)addYears:(int)years toDate:(NSDate *)date
+{
+    NSDateComponents *dc = [NSDateComponents new];
+    dc.year = years;
+    
+    return [self dateByAddingComponents:dc toDate:date options:0];
+}
 @end

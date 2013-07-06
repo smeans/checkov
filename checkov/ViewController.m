@@ -146,7 +146,7 @@
 
 - (IBAction)upClicked:(id)sender
 {
-    
+    calendarView.viewType = year;
 }
 
 - (IBAction)minusClicked:(id)sender
@@ -199,12 +199,16 @@
 #pragma mark CalendarView delegate
 - (void)calendarView:(CalendarView *)calendar focusDateChanged:(NSDate *)date
 {
-    NSDateFormatter *df = [NSDateFormatter new];
-    NSArray *ms = [df monthSymbols];
-    
     NSDateComponents *dc = [calendar.calendar components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
     
-    dateLabel.text = [NSString stringWithFormat:@"%@ - %d", [ms objectAtIndex:dc.month-1], dc.year];
+    if (calendar.viewType == month) {
+        NSDateFormatter *df = [NSDateFormatter new];
+        NSArray *ms = [df monthSymbols];
+        
+        dateLabel.text = [NSString stringWithFormat:@"%@ - %d", [ms objectAtIndex:dc.month-1], dc.year];
+    } else {
+        dateLabel.text = [NSString stringWithFormat:@"%d", dc.year];
+    }
 }
 
 - (UIFont *)cellFont
