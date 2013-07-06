@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--I Pad View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="iPadViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" horizontalHuggingPriority="926" id="5" userLabel="MainView">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--I Pad Checkov View Controller-->
+        <scene sceneID="cfB-Vl-2NZ">
+            <objects>
+                <viewController storyboardIdentifier="checkovDetail" id="0Lf-fA-ruT" customClass="iPadCheckovViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ORV-eI-F8L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGc-Pr-bgH" customClass="EllipseView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-lA-pE7">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="bI9-hO-L9u"/>
+                                    <constraint firstAttribute="height" constant="50" id="fsN-ZD-uoN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQf-bZ-sUv">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="nOU-rd-g18"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteClicked:" destination="0Lf-fA-ruT" eventType="touchUpInside" id="ukg-2T-0S1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hGc-Pr-bgH" firstAttribute="leading" secondItem="ORV-eI-F8L" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="46V-as-iKx"/>
+                            <constraint firstAttribute="trailing" secondItem="zQf-bZ-sUv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="BHr-ED-rRO"/>
+                            <constraint firstAttribute="bottom" secondItem="zQf-bZ-sUv" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="GGy-wM-EaT"/>
+                            <constraint firstAttribute="trailing" secondItem="u3O-lA-pE7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="VfR-Qi-sXF"/>
+                            <constraint firstItem="zQf-bZ-sUv" firstAttribute="leading" secondItem="ORV-eI-F8L" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="YB9-N3-Ek5"/>
+                            <constraint firstItem="u3O-lA-pE7" firstAttribute="bottom" secondItem="hGc-Pr-bgH" secondAttribute="bottom" type="default" id="mHY-kE-pGP"/>
+                            <constraint firstItem="hGc-Pr-bgH" firstAttribute="top" secondItem="ORV-eI-F8L" secondAttribute="top" constant="20" symbolic="YES" type="default" id="o1b-SZ-Bhe"/>
+                            <constraint firstItem="u3O-lA-pE7" firstAttribute="leading" secondItem="hGc-Pr-bgH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zfO-VS-UUL"/>
+                            <constraint firstItem="u3O-lA-pE7" firstAttribute="top" secondItem="ORV-eI-F8L" secondAttribute="top" constant="20" symbolic="YES" type="default" id="zv3-g7-O2O"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="ellipseView" destination="hGc-Pr-bgH" id="hcZ-fk-JcT"/>
+                        <outlet property="nameView" destination="u3O-lA-pE7" id="lft-Yh-6R1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtK-wp-RaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="-194"/>
+        </scene>
     </scenes>
     <resources>
         <image name="27-circle-north@2x.png" width="56" height="56"/>
@@ -159,6 +220,18 @@
         </class>
         <class className="CheckoffCalendarView" superclassName="CalendarView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckoffCalendarView.h"/>
+        </class>
+        <class className="CheckovViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckovViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeClicked:"/>
+                <relationship kind="action" name="deleteClicked:"/>
+                <relationship kind="outlet" name="ellipseView" candidateClass="EllipseView"/>
+                <relationship kind="outlet" name="nameView" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EllipseView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EllipseView.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -177,6 +250,15 @@
                 <relationship kind="outlet" name="plusButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="portraitList" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="iPadCheckovViewController" superclassName="CheckovViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/iPadCheckovViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteClicked:"/>
+            </relationships>
+        </class>
+        <class className="iPadViewController" superclassName="ViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/iPadViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

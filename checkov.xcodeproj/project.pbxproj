@@ -10,6 +10,12 @@
 		77ACB7C7177F267D004B14A0 /* CheckovTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */; };
 		77ACB7CA177F28CB004B14A0 /* CheckovItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C9177F28CB004B14A0 /* CheckovItem.m */; };
 		77ACB7CD177F7816004B14A0 /* EllipseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7CC177F7816004B14A0 /* EllipseView.m */; };
+		77C2D2CE1788541700ECFB20 /* CheckovViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D2CD1788541700ECFB20 /* CheckovViewController.m */; };
+		77C2D2D0178857FA00ECFB20 /* 31-circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C2D2CF178857FA00ECFB20 /* 31-circle-x@2x.png */; };
+		77C2D2D31788603B00ECFB20 /* iPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D2D21788603B00ECFB20 /* iPhoneViewController.m */; };
+		77C2D2D61788604400ECFB20 /* iPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D2D51788604400ECFB20 /* iPadViewController.m */; };
+		77C2D2D9178861DC00ECFB20 /* iPhoneCheckovViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D2D8178861DC00ECFB20 /* iPhoneCheckovViewController.m */; };
+		77C2D2DC178861EB00ECFB20 /* iPadCheckovViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D2DB178861EB00ECFB20 /* iPadCheckovViewController.m */; };
 		77E35FA31778BB25005B497B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA21778BB25005B497B /* UIKit.framework */; };
 		77E35FA51778BB25005B497B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA41778BB25005B497B /* Foundation.framework */; };
 		77E35FA71778BB25005B497B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E35FA61778BB25005B497B /* CoreGraphics.framework */; };
@@ -40,6 +46,17 @@
 		77ACB7C9177F28CB004B14A0 /* CheckovItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckovItem.m; sourceTree = "<group>"; };
 		77ACB7CB177F7816004B14A0 /* EllipseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseView.h; sourceTree = "<group>"; };
 		77ACB7CC177F7816004B14A0 /* EllipseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseView.m; sourceTree = "<group>"; };
+		77C2D2CC1788541700ECFB20 /* CheckovViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckovViewController.h; sourceTree = "<group>"; };
+		77C2D2CD1788541700ECFB20 /* CheckovViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckovViewController.m; sourceTree = "<group>"; };
+		77C2D2CF178857FA00ECFB20 /* 31-circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x@2x.png"; sourceTree = "<group>"; };
+		77C2D2D11788603B00ECFB20 /* iPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneViewController.h; sourceTree = "<group>"; };
+		77C2D2D21788603B00ECFB20 /* iPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneViewController.m; sourceTree = "<group>"; };
+		77C2D2D41788604400ECFB20 /* iPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadViewController.h; sourceTree = "<group>"; };
+		77C2D2D51788604400ECFB20 /* iPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadViewController.m; sourceTree = "<group>"; };
+		77C2D2D7178861DC00ECFB20 /* iPhoneCheckovViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneCheckovViewController.h; sourceTree = "<group>"; };
+		77C2D2D8178861DC00ECFB20 /* iPhoneCheckovViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneCheckovViewController.m; sourceTree = "<group>"; };
+		77C2D2DA178861EB00ECFB20 /* iPadCheckovViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadCheckovViewController.h; sourceTree = "<group>"; };
+		77C2D2DB178861EB00ECFB20 /* iPadCheckovViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadCheckovViewController.m; sourceTree = "<group>"; };
 		77E35F9F1778BB25005B497B /* checkov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = checkov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E35FA21778BB25005B497B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77E35FA41778BB25005B497B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +139,16 @@
 				77E35FBD1778BB25005B497B /* MainStoryboard_iPad.storyboard */,
 				77E35FC01778BB25005B497B /* ViewController.h */,
 				77E35FC11778BB25005B497B /* ViewController.m */,
+				77C2D2D11788603B00ECFB20 /* iPhoneViewController.h */,
+				77C2D2D21788603B00ECFB20 /* iPhoneViewController.m */,
+				77C2D2D41788604400ECFB20 /* iPadViewController.h */,
+				77C2D2D51788604400ECFB20 /* iPadViewController.m */,
+				77C2D2CC1788541700ECFB20 /* CheckovViewController.h */,
+				77C2D2CD1788541700ECFB20 /* CheckovViewController.m */,
+				77C2D2D7178861DC00ECFB20 /* iPhoneCheckovViewController.h */,
+				77C2D2D8178861DC00ECFB20 /* iPhoneCheckovViewController.m */,
+				77C2D2DA178861EB00ECFB20 /* iPadCheckovViewController.h */,
+				77C2D2DB178861EB00ECFB20 /* iPadCheckovViewController.m */,
 				77ACB7C8177F28CB004B14A0 /* CheckovItem.h */,
 				77ACB7C9177F28CB004B14A0 /* CheckovItem.m */,
 				77E35FCB1778C7BC005B497B /* NSCalendar+Display.h */,
@@ -144,6 +171,7 @@
 		77E35FA91778BB25005B497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77C2D2CF178857FA00ECFB20 /* 31-circle-x@2x.png */,
 				77E35FD51778DC51005B497B /* 27-circle-north@2x.png */,
 				77E35FD31778DB39005B497B /* 25-circle-west@2x.png */,
 				77E35FD11778DB22005B497B /* 34-circle-minus@2x.png */,
@@ -220,6 +248,7 @@
 				77E35FD21778DB22005B497B /* 34-circle-minus@2x.png in Resources */,
 				77E35FD41778DB39005B497B /* 25-circle-west@2x.png in Resources */,
 				77E35FD61778DC51005B497B /* 27-circle-north@2x.png in Resources */,
+				77C2D2D0178857FA00ECFB20 /* 31-circle-x@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +269,11 @@
 				77ACB7C7177F267D004B14A0 /* CheckovTableViewCell.m in Sources */,
 				77ACB7CA177F28CB004B14A0 /* CheckovItem.m in Sources */,
 				77ACB7CD177F7816004B14A0 /* EllipseView.m in Sources */,
+				77C2D2CE1788541700ECFB20 /* CheckovViewController.m in Sources */,
+				77C2D2D31788603B00ECFB20 /* iPhoneViewController.m in Sources */,
+				77C2D2D61788604400ECFB20 /* iPadViewController.m in Sources */,
+				77C2D2D9178861DC00ECFB20 /* iPhoneCheckovViewController.m in Sources */,
+				77C2D2DC178861EB00ECFB20 /* iPadCheckovViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

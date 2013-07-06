@@ -33,4 +33,16 @@
     CGContextFillEllipseInRect(c, r);
 }
 
+- (UIColor *)ellipseColor
+{
+    return _ellipseColor;
+}
+
+- (void)setEllipseColor:(UIColor *)ellipseColor
+{
+    _ellipseColor = ellipseColor;
+    
+    [self setNeedsDisplay];
+}
+
 @end

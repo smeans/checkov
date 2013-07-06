@@ -23,7 +23,10 @@
 }
 
 @property (assign) int focusItemIndex;
+@property (readonly) NSMutableArray *checkoffs;
+@property (readonly) CheckovItem *focusItem;
 
+- (void)deleteCheckoff:(int)checkoff;
 - (IBAction)upClicked:(id)sender;
 - (IBAction)minusClicked:(id)sender;
 - (IBAction)plusClicked:(id)sender;

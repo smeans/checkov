@@ -25,6 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.accessoryView = [[EllipseView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.height,  self.bounds.size.height)];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return self;
@@ -40,10 +41,7 @@
     
     UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     
-    [self addGestureRecognizer:gr];
-    
-    EllipseView *ev = (EllipseView *)self.accessoryView;
-    ev.ellipseColor = self.item.color;
+    [self addGestureRecognizer:gr];    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -59,10 +57,14 @@
     UITableView *tv = (UITableView *)self.superview;
     CheckovTableViewCell *tvc = (CheckovTableViewCell *)[tv cellForRowAtIndexPath:[tv indexPathForSelectedRow]];
     
-    if (t.tapCount == 1 && (_item.isDefault || tvc.item == self.item)) {
+    if (t.view == self.accessoryView && !_item.isDefault) {
+        if (t.tapCount == 1) {
+            UITableView *tv = (UITableView *)self.superview;
+            [tv.delegate tableView:tv accessoryButtonTappedForRowWithIndexPath:[tv indexPathForCell:self]];
+        }
+    } else if (t.tapCount == 1 && (_item.isDefault || tvc.item == self.item)) {
         [self startEditing];
     }
-    
 }
 
 CheckovTableViewCell *editingCell;
@@ -87,6 +89,10 @@ CheckovTableViewCell *editingCell;
     [_text becomeFirstResponder];
     
     editingCell = self;
+    
+    UITableView *tv = (UITableView *)self.superview;
+    
+    [tv scrollToRowAtIndexPath:[tv indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)stopEditing

@@ -9,11 +9,9 @@
 #import "ViewController.h"
 #import "NSCalendar+Display.h"
 #import "CheckovTableViewCell.h"
+#import "CheckovViewController.h"
 
 @interface ViewController ()
-
-@property (readonly) NSMutableArray *checkoffs;
-@property (readonly) CheckovItem *focusItem;
 
 - (void)checkMakeBlankItem;
 - (UIColor *)getNextColor;
@@ -35,13 +33,28 @@
     
     [self checkMakeBlankItem];
     
-    self.focusItemIndex = (int)[[NSUbiquitousKeyValueStore defaultStore] longLongForKey:@"focusItem"];
-    
     calendarView.delegate = self;
     calendarView.focusDate = [NSDate date];
     calendarView.focusCalendar = self.focusItem.calendar;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkovChanged:) name:CHECKOV_CHANGED object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    NSDictionary* kbi = [notification userInfo];
+    NSValue* kbf = [kbi valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect rc = [kbf CGRectValue];
+    
+    landscapeList.contentInset = UIEdgeInsetsMake(0, 0, rc.size.height, 0);
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification
+{
+    landscapeList.contentInset = UIEdgeInsetsZero;
 }
 
 - (void)checkMakeBlankItem
@@ -71,7 +84,6 @@
 {
     NSData *d = [NSKeyedArchiver archivedDataWithRootObject:self.checkoffs];
     [d writeToFile:[self checkoffPath] atomically:YES];
-    NSLog(@"wrote to %@", [self checkoffPath]);
 }
 
 - (void)loadCheckoffs
@@ -90,11 +102,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+    self.focusItemIndex = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"focusItem"];
     
-    [portraitList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionBottom];
-    [landscapeList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionBottom];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:self.focusItemIndex inSection:0];
+    [portraitList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [landscapeList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -111,6 +125,14 @@
     if (landscapeList) {
         portraitList.hidden =
         landscapeList.hidden = NO;
+        
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:_focusItemIndex inSection:0];
+        
+        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+            [landscapeList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+        } else {
+            [portraitList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+        }
     }
 }
 
@@ -154,9 +176,10 @@
     calendarView.focusCalendar = self.focusItem.calendar;
     calendarView.trueColor = self.focusItem.color;
     
-    [[NSUbiquitousKeyValueStore defaultStore] setLongLong:_focusItemIndex forKey:@"focusItem"];
-    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+    [[NSUserDefaults standardUserDefaults] setInteger:_focusItemIndex forKey:@"focusItem"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 - (CheckovItem *)focusItem
 {
     return [self.checkoffs objectAtIndex:_focusItemIndex];
@@ -164,14 +187,11 @@
 
 - (UIColor *)getNextColor
 {
-    int nc = (int)[[NSUbiquitousKeyValueStore defaultStore] longLongForKey:@"nextColor"];
+    int nc = _checkoffs.count;
     
     CGFloat r = sinf((float)nc*2.4)/2 + .5;
     CGFloat g = sinf((float)nc*2.4+2)/2 + .5;
     CGFloat b = sinf((float)nc*2.4+4)/2 +.5;
-    
-    [[NSUbiquitousKeyValueStore defaultStore] setLongLong:nc+1 forKey:@"nextColor"];
-    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
     
     return [UIColor colorWithRed:r green:g blue:b alpha:.8];
 }
@@ -190,6 +210,19 @@
 - (UIFont *)cellFont
 {
     return dateLabel.font;
+}
+
+- (void)deleteCheckoff:(int)checkoff
+{
+    [self.checkoffs removeObjectAtIndex:checkoff];
+    
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:checkoff inSection:0];
+    [portraitList deleteRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [landscapeList deleteRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self saveCheckoffs];
+    
+    self.focusItemIndex = MIN(self.focusItemIndex, self.checkoffs.count-1);
 }
 
 #pragma mark Checkov table view data delegate
@@ -211,6 +244,8 @@
     
     cell.item = item;
     cell.textLabel.text = item.name;
+    EllipseView *ev = (EllipseView *)cell.accessoryView;
+    ev.ellipseColor = item.color;
     
     return cell;
 }
@@ -226,7 +261,6 @@
     [CheckovTableViewCell stopEditing];
     
     self.focusItemIndex = indexPath.row;
-    
 }
 
 @end
