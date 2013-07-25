@@ -24,7 +24,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.accessoryView = [[EllipseView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.height,  self.bounds.size.height)];
+        CGFloat h = self.bounds.size.height - 5;
+        
+        self.accessoryView = [[EllipseView alloc] initWithFrame:CGRectMake(0, 0, h, h)];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     

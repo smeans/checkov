@@ -54,23 +54,25 @@
     CGContextSetFillColorWithColor(c, dfc.CGColor);
     CGContextFillEllipseInRect(c, rect);
     
-    rect = CGRectInset(rect, 5, 5);
-
-    NSDateComponents *dc = [self.calendar components:NSDayCalendarUnit fromDate:date];
-    
-    NSString *s = [NSString stringWithFormat:@"%d", dc.day];
-    CGFloat fs;
-    CGSize ts = [@"00" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:rect.size.width*.7 lineBreakMode:NSLineBreakByClipping];
-    
-    UIFont *f = [UIFont systemFontOfSize:fs];
-    ts = [s sizeWithFont:f];
-    
-    rect = CGRectInset(rect, (rect.size.width-ts.width)/2, (rect.size.height-ts.height)/2);
-    
-    bool isToday = [[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle] isEqualToString:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle]];
-    
-    CGContextSetFillColorWithColor(c, (isToday ? TODAY_TEXT_COLOR : TEXT_COLOR).CGColor);
-    [s drawInRect:rect withFont:[UIFont systemFontOfSize:fs]];
+    if (self.viewType == month) {
+        rect = CGRectInset(rect, 5, 5);
+        
+        NSDateComponents *dc = [self.calendar components:NSDayCalendarUnit fromDate:date];
+        
+        NSString *s = [NSString stringWithFormat:@"%d", dc.day];
+        CGFloat fs;
+        CGSize ts = [@"00" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:rect.size.width*.7 lineBreakMode:NSLineBreakByClipping];
+        
+        UIFont *f = [UIFont systemFontOfSize:fs];
+        ts = [s sizeWithFont:f];
+        
+        rect = CGRectInset(rect, (rect.size.width-ts.width)/2, (rect.size.height-ts.height)/2);
+        
+        bool isToday = [[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle] isEqualToString:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle]];
+        
+        CGContextSetFillColorWithColor(c, (isToday ? TODAY_TEXT_COLOR : TEXT_COLOR).CGColor);
+        [s drawInRect:rect withFont:[UIFont systemFontOfSize:fs]];
+    }
 }
 
 - (void)dayTouched:(NSDate *)date

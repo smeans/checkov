@@ -10,4 +10,6 @@
 
 @interface iPhoneCheckovViewController : CheckovViewController
 
+- (IBAction)doneClicked:(id)sender;
+
 @end

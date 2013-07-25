@@ -7,6 +7,7 @@
 //
 
 #import "iPhoneViewController.h"
+#import "CheckovViewController.h"
 
 @interface iPhoneViewController ()
 
@@ -27,6 +28,32 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)calendarView:(CalendarView *)calendar focusDateChanged:(NSDate *)date
+{
+    NSDateComponents *dc = [calendar.calendar components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    
+    if (calendar.viewType == month) {
+        NSDateFormatter *df = [NSDateFormatter new];
+        NSArray *ms = [df shortMonthSymbols];
+        
+        dateLabel.text = [NSString stringWithFormat:@"%@ - %d", [ms objectAtIndex:dc.month-1], dc.year];
+    } else {
+        dateLabel.text = [NSString stringWithFormat:@"%d", dc.year];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    CheckovViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"checkovDetail"];
+    
+    CheckovTableViewCell *ctvc = (CheckovTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+
+    cvc.checkovCell = ctvc;
+    cvc.viewController = self;
+    
+    [self presentViewController:cvc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

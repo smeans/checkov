@@ -155,16 +155,18 @@
     NSDateFormatter *df = [NSDateFormatter new];
     NSArray *months = [df monthSymbols];
     
+    CGFloat fs;
+    CGSize ts = [@"M" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:mw/7 lineBreakMode:NSLineBreakByClipping];
+    UIFont *f = [UIFont systemFontOfSize:fs];
+    
     for (int m = 0; m < 12; m++) {
         CGRect mr = CGRectMake(m%4*mw, m/4*mh, mw, mh);
         
-        CGFloat fs;
         NSString *mn = [months objectAtIndex:m];
-        CGSize ts = [@"M" sizeWithFont:[UIFont systemFontOfSize:144.0] minFontSize:8.0 actualFontSize:&fs forWidth:mw/7 lineBreakMode:NSLineBreakByClipping];
-        UIFont *f = [UIFont systemFontOfSize:fs];
         ts = [mn sizeWithFont:f];
         
         CGRect mlr = CGRectInset(mr, mr.size.width/2-ts.width/2, 0);
+        CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor blackColor].CGColor);
         [mn drawInRect:mlr withFont:f];
         
         CGFloat dw = mw/7;

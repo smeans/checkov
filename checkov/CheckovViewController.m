@@ -32,10 +32,6 @@
 	// Do any additional setup after loading the view.
 }
 
-- (IBAction)closeClicked:(id)sender
-{
-}
-
 - (IBAction)deleteClicked:(id)sender
 {
     UITableView *tv = (UITableView *)self.checkovCell.superview;
@@ -57,6 +53,9 @@
 {
     ellipseView.ellipseColor = _checkovCell.item.color;
     nameView.text = _checkovCell.item.name;
+    
+    firstDateView.text = [NSDateFormatter localizedStringFromDate:_checkovCell.item.calendar.firstDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    lastDateView.text = [NSDateFormatter localizedStringFromDate:_checkovCell.item.calendar.lastDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
 }
 
 - (void)setCheckovCell:(CheckovTableViewCell *)checkovCell

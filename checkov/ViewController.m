@@ -211,6 +211,7 @@
     }
 }
 
+
 - (UIFont *)cellFont
 {
     return dateLabel.font;

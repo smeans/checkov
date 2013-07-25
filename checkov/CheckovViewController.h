@@ -14,12 +14,13 @@
 @interface CheckovViewController : UIViewController {
     IBOutlet EllipseView *ellipseView;
     IBOutlet UILabel *nameView;
+    IBOutlet UILabel *firstDateView;
+    IBOutlet UILabel *lastDateView;
 }
 
 @property (strong) CheckovTableViewCell *checkovCell;
 @property (strong) ViewController *viewController;
 
-- (IBAction)closeClicked:(id)sender;
 - (IBAction)deleteClicked:(id)sender;
 
 @end

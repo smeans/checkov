@@ -14,4 +14,7 @@
 - (void)setDate:(NSDate *)date;
 - (void)resetDate:(NSDate *)date;
 
+@property (readonly) NSDate *firstDate;
+@property (readonly) NSDate *lastDate;
+
 @end

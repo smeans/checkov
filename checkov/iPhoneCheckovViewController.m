@@ -29,6 +29,18 @@
 	// Do any additional setup after loading the view.
 }
 
+- (IBAction)doneClicked:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)deleteClicked:(id)sender
+{
+    [super deleteClicked:sender];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
