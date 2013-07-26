@@ -251,6 +251,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="deleteButton" destination="dmN-Lz-lGj" id="hQg-JM-FI2"/>
                         <outlet property="ellipseView" destination="4hj-SK-mKr" id="PBr-KM-0dk"/>
                         <outlet property="exportButton" destination="Auy-B9-Uht" id="573-vz-xdF"/>
                         <outlet property="firstDateView" destination="SOf-vM-b1Y" id="eEY-3M-YMf"/>
@@ -280,6 +281,7 @@
             <relationships>
                 <relationship kind="action" name="deleteClicked:"/>
                 <relationship kind="action" name="exportClicked:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ellipseView" candidateClass="EllipseView"/>
                 <relationship kind="outlet" name="exportButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="firstDateView" candidateClass="UILabel"/>

@@ -24,6 +24,17 @@
     return self;
 }
 
+- (IBAction)deleteClicked:(id)sender
+{
+    if ([deleteButton.titleLabel.text isEqualToString:@"Confirm"]) {
+        UITableView *tv = (UITableView *)self.checkovCell.superview;
+        
+        [self.viewController deleteCheckoff:[tv indexPathForCell:self.checkovCell].row];
+    } else {
+        [deleteButton setTitle:@"Confirm" forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

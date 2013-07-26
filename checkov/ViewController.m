@@ -187,7 +187,9 @@
 
 - (UIColor *)getNextColor
 {
-    int nc = _checkoffs.count;
+    int nc = [[NSUserDefaults standardUserDefaults] integerForKey:@"nextColor"];
+    [[NSUserDefaults standardUserDefaults] setInteger:nc+1 forKey:@"nextColor"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     CGFloat r = sinf((float)nc*2.4)/2 + .5;
     CGFloat g = sinf((float)nc*2.4+2)/2 + .5;

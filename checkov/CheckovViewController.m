@@ -55,13 +55,6 @@
     [_dic presentOptionsMenuFromRect:exportButton.frame inView:self.view animated:YES];
 }
 
-- (IBAction)deleteClicked:(id)sender
-{
-    UITableView *tv = (UITableView *)self.checkovCell.superview;
-    
-    [self.viewController deleteCheckoff:[tv indexPathForCell:self.checkovCell].row];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [self refreshUI];

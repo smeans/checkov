@@ -18,6 +18,7 @@
     IBOutlet UILabel *lastDateView;
     IBOutlet UILabel *totalDaysView;
     IBOutlet UIButton *exportButton;
+    IBOutlet UIButton *deleteButton;
 }
 
 @property (strong) CheckovTableViewCell *checkovCell;

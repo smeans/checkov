@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -252,6 +251,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="deleteButton" destination="zQf-bZ-sUv" id="POp-UE-d6x"/>
                         <outlet property="ellipseView" destination="hGc-Pr-bgH" id="hcZ-fk-JcT"/>
                         <outlet property="exportButton" destination="w8g-9e-0sj" id="8eA-2T-7a0"/>
                         <outlet property="firstDateView" destination="h9R-2U-hvL" id="1Cg-9u-or4"/>
@@ -281,6 +281,7 @@
             <relationships>
                 <relationship kind="action" name="deleteClicked:"/>
                 <relationship kind="action" name="exportClicked:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ellipseView" candidateClass="EllipseView"/>
                 <relationship kind="outlet" name="exportButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="firstDateView" candidateClass="UILabel"/>
