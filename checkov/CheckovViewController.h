@@ -16,11 +16,16 @@
     IBOutlet UILabel *nameView;
     IBOutlet UILabel *firstDateView;
     IBOutlet UILabel *lastDateView;
+    IBOutlet UILabel *totalDaysView;
+    IBOutlet UIButton *exportButton;
 }
 
 @property (strong) CheckovTableViewCell *checkovCell;
 @property (strong) ViewController *viewController;
 
+- (NSString *)exportCalendar;
+
+- (IBAction)exportClicked:(id)sender;
 - (IBAction)deleteClicked:(id)sender;
 
 @end

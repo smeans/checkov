@@ -25,6 +25,7 @@
 {
     if (self = [super init]) {
         _years = [decoder decodeObjectForKey:@"years"];
+        [self compactYears];
     }
     
     return self;
@@ -76,6 +77,44 @@
     }
     
     [self compactYears];
+}
+
+- (void)exportToCSV:(NSString *)path
+{
+    NSArray *ka = [_years.allKeys sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
+
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDateComponents *dc = [NSDateComponents new];
+    
+    NSMutableString *s = [NSMutableString new];
+    
+    for (NSString *year in ka) {
+        dc.year = [year integerValue];
+        dc.day = 0;
+        
+        NSMutableData *data = [_years objectForKey:year];
+        const unsigned char *pb = [data bytes];
+        
+        for (int i = 0; i < data.length; i++) {
+            unsigned char b = pb[i];
+            
+            if (b) {
+                for (int j = 0; j < 8;j++, dc.day++, b >>= 1) {
+                    if (b & 0x01) {
+                        NSDate *d = [[NSCalendar currentCalendar] dateFromComponents:dc];
+                        
+                        [s appendFormat:@"%@\n", [df stringFromDate:d]];
+                    }
+                }
+            } else {
+                dc.day += 8;
+            }
+        }
+    }
+    
+    [s writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (NSMutableDictionary *)years
@@ -145,6 +184,11 @@
     while (i < data.length && !pb[i]) {
         i++;
     }
+    
+    if (i >= data.length) {
+        return nil;
+    }
+    
     dc.day = i * 8;
     
     unsigned char b = pb[i];
@@ -176,6 +220,11 @@
     while (i >= 0 && !pb[i]) {
         i--;
     }
+    
+    if (i < 0) {
+        return nil;
+    }
+    
     dc.day = (i + 1) * 8 - 1;
     
     unsigned char b = pb[i];
@@ -187,4 +236,27 @@
     return [[NSCalendar currentCalendar] dateFromComponents:dc];
 }
 
+- (int)dateCount
+{
+    int dc = 0;
+    
+    for (NSString *year in _years.keyEnumerator) {
+        NSMutableData *data = [_years objectForKey:year];
+        const unsigned char *pb = [data bytes];
+        
+        for (int i = 0; i < data.length; i++) {
+            unsigned char b = pb[i];
+            
+            while (b) {
+                if (b & 0x01) {
+                    dc++;
+                }
+                
+                b >>= 1;
+            }
+        }
+    }
+    
+    return dc;
+}
 @end

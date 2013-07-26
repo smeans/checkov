@@ -14,7 +14,10 @@
 - (void)setDate:(NSDate *)date;
 - (void)resetDate:(NSDate *)date;
 
+- (void)exportToCSV:(NSString *)path;
+
 @property (readonly) NSDate *firstDate;
 @property (readonly) NSDate *lastDate;
+@property (readonly) int dateCount;
 
 @end

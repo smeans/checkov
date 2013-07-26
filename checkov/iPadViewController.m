@@ -66,6 +66,12 @@
     [_checkovPopover presentPopoverFromRect:rc inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    [self hideDetail];
+}
 - (void)deleteCheckoff:(int)checkoff
 {
     [super deleteCheckoff:checkoff];

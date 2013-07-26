@@ -9,13 +9,14 @@
 #import "CheckovViewController.h"
 
 @interface CheckovViewController ()
-
+@property (strong) UIDocumentInteractionController *dic;
 @end
 
 @implementation CheckovViewController
 
 @synthesize checkovCell=_checkovCell;
 @synthesize viewController=_viewController;
+@synthesize dic=_dic;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +31,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (NSString *)exportCalendar
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *fn = [NSString stringWithFormat:@"Checkov-%@-%@.csv", _checkovCell.item.name, [df stringFromDate:[NSDate date]]];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fn];
+    [_checkovCell.item.calendar exportToCSV:path];
+    
+    return path;
+}
+
+- (IBAction)exportClicked:(id)sender
+{
+    NSString *path = [self exportCalendar];
+    
+    NSURL *url = [NSURL fileURLWithPath:path];
+    _dic = [UIDocumentInteractionController interactionControllerWithURL:url];
+    
+    [_dic presentOptionsMenuFromRect:exportButton.frame inView:self.view animated:YES];
 }
 
 - (IBAction)deleteClicked:(id)sender
@@ -53,9 +76,14 @@
 {
     ellipseView.ellipseColor = _checkovCell.item.color;
     nameView.text = _checkovCell.item.name;
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateStyle = NSDateFormatterShortStyle;
+    df.timeStyle = NSDateFormatterNoStyle;
+    [df setDoesRelativeDateFormatting:YES];
     
-    firstDateView.text = [NSDateFormatter localizedStringFromDate:_checkovCell.item.calendar.firstDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-    lastDateView.text = [NSDateFormatter localizedStringFromDate:_checkovCell.item.calendar.lastDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    firstDateView.text = [df stringFromDate:_checkovCell.item.calendar.firstDate];
+    lastDateView.text = [df stringFromDate:_checkovCell.item.calendar.lastDate];
+    totalDaysView.text = [NSString stringWithFormat:@"%d", _checkovCell.item.calendar.dateCount];
 }
 
 - (void)setCheckovCell:(CheckovTableViewCell *)checkovCell
