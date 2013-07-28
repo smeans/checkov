@@ -35,6 +35,21 @@
 
 - (IBAction)longPress:(id)sender
 {
+    NSLog(@"got a longPress:%@", sender);
+    UILongPressGestureRecognizer *gr = (UILongPressGestureRecognizer *)sender;
+    
+    if (CGRectContainsPoint(self.accessoryView.bounds, [gr locationInView:self.accessoryView])
+            && !_item.isDefault) {
+        UITableView *tv = (UITableView *)self.superview;
+        [tv.delegate tableView:tv accessoryButtonTappedForRowWithIndexPath:[tv indexPathForCell:self]];        
+    } else {
+        UITableView *tv = (UITableView *)self.superview;
+        CheckovTableViewCell *tvc = (CheckovTableViewCell *)[tv cellForRowAtIndexPath:[tv indexPathForSelectedRow]];
+        
+        if (_item.isDefault || tvc.item == self.item) {
+            [self startEditing];
+        }
+    }
 }
 
 -(void)layoutSubviews

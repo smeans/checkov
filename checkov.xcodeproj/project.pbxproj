@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776AB8A517A58A9300D37CD5 /* Checkov57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 776AB8A117A58A9300D37CD5 /* Checkov57@2x.png */; };
+		776AB8A617A58A9300D37CD5 /* Checkov57.png in Resources */ = {isa = PBXBuildFile; fileRef = 776AB8A217A58A9300D37CD5 /* Checkov57.png */; };
+		776AB8A717A58A9300D37CD5 /* Checkov72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 776AB8A317A58A9300D37CD5 /* Checkov72@2x.png */; };
+		776AB8A817A58A9300D37CD5 /* Checkov72.png in Resources */ = {isa = PBXBuildFile; fileRef = 776AB8A417A58A9300D37CD5 /* Checkov72.png */; };
 		77ACB7C7177F267D004B14A0 /* CheckovTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */; };
 		77ACB7CA177F28CB004B14A0 /* CheckovItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7C9177F28CB004B14A0 /* CheckovItem.m */; };
 		77ACB7CD177F7816004B14A0 /* EllipseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACB7CC177F7816004B14A0 /* EllipseView.m */; };
@@ -39,6 +43,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		776AB8A117A58A9300D37CD5 /* Checkov57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkov57@2x.png"; sourceTree = "<group>"; };
+		776AB8A217A58A9300D37CD5 /* Checkov57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkov57.png; sourceTree = "<group>"; };
+		776AB8A317A58A9300D37CD5 /* Checkov72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkov72@2x.png"; sourceTree = "<group>"; };
+		776AB8A417A58A9300D37CD5 /* Checkov72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkov72.png; sourceTree = "<group>"; };
 		77ACB7C4177E31CC004B14A0 /* checkov.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = checkov.entitlements; sourceTree = "<group>"; };
 		77ACB7C5177F267D004B14A0 /* CheckovTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckovTableViewCell.h; sourceTree = "<group>"; };
 		77ACB7C6177F267D004B14A0 /* CheckovTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckovTableViewCell.m; sourceTree = "<group>"; };
@@ -102,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		776AB89E17A4326300D37CD5 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				776AB8A117A58A9300D37CD5 /* Checkov57@2x.png */,
+				776AB8A217A58A9300D37CD5 /* Checkov57.png */,
+				776AB8A317A58A9300D37CD5 /* Checkov72@2x.png */,
+				776AB8A417A58A9300D37CD5 /* Checkov72.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		77E35F961778BB25005B497B = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +190,7 @@
 		77E35FA91778BB25005B497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				776AB89E17A4326300D37CD5 /* icons */,
 				77C2D2CF178857FA00ECFB20 /* 31-circle-x@2x.png */,
 				77E35FD51778DC51005B497B /* 27-circle-north@2x.png */,
 				77E35FD31778DB39005B497B /* 25-circle-west@2x.png */,
@@ -249,6 +269,10 @@
 				77E35FD41778DB39005B497B /* 25-circle-west@2x.png in Resources */,
 				77E35FD61778DC51005B497B /* 27-circle-north@2x.png in Resources */,
 				77C2D2D0178857FA00ECFB20 /* 31-circle-x@2x.png in Resources */,
+				776AB8A517A58A9300D37CD5 /* Checkov57@2x.png in Resources */,
+				776AB8A617A58A9300D37CD5 /* Checkov57.png in Resources */,
+				776AB8A717A58A9300D37CD5 /* Checkov72@2x.png in Resources */,
+				776AB8A817A58A9300D37CD5 /* Checkov72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

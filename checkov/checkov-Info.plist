@@ -45,5 +45,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Checkov57</string>
+		<string>Checkov72</string>
+	</array>
 </dict>
 </plist>
