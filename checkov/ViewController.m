@@ -25,6 +25,7 @@
 
 @synthesize checkoffs=_checkoffs;
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,10 +47,21 @@
 - (void)keyboardDidShow:(NSNotification *)notification
 {
     NSDictionary* kbi = [notification userInfo];
-    NSValue* kbf = [kbi valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    NSValue* kbf = [kbi valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect rc = [kbf CGRectValue];
+    rc = [self.view convertRect:rc fromView:nil];
     
-    landscapeList.contentInset = UIEdgeInsetsMake(0, 0, rc.size.height, 0);
+    if (landscapeList) {
+        landscapeList.contentInset = UIEdgeInsetsMake(0, 0, rc.size.height, 0);
+        
+        CGFloat dy = rc.origin.y - landscapeList.frame.origin.y;
+        CGRect rci = [landscapeList rectForRowAtIndexPath:[landscapeList indexPathForSelectedRow]];
+        rci = [self.view convertRect:rci fromView:landscapeList];
+        
+        if (rci.origin.y+rci.size.height > dy) {
+            [landscapeList scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification
@@ -71,6 +83,8 @@
     
     [portraitList reloadData];
     [landscapeList reloadData];
+    
+    [self syncTableSelections];
 }
 
 - (NSString *)checkoffPath
@@ -134,6 +148,8 @@
             [portraitList selectRowAtIndexPath:ip animated:NO scrollPosition:UITableViewScrollPositionMiddle];
         }
     }
+    
+    [CheckovTableViewCell stopEditing];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -219,6 +235,14 @@
     return dateLabel.font;
 }
 
+- (void)syncTableSelections
+{
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:self.focusItemIndex inSection:0];
+    
+    [portraitList selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [landscapeList selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+}
+
 - (void)deleteCheckoff:(int)checkoff
 {
     [self.checkoffs removeObjectAtIndex:checkoff];
@@ -230,6 +254,7 @@
     [self saveCheckoffs];
     
     self.focusItemIndex = MIN(self.focusItemIndex, self.checkoffs.count-1);
+    [self syncTableSelections];
 }
 
 #pragma mark Checkov table view data delegate

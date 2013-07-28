@@ -30,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (NSString *)exportCalendar
@@ -43,6 +42,11 @@
     [_checkovCell.item.calendar exportToCSV:path];
     
     return path;
+}
+
+- (IBAction)deleteClicked:(id)sender
+{
+    
 }
 
 - (IBAction)exportClicked:(id)sender

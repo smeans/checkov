@@ -12,6 +12,7 @@
 @interface CheckovTableViewCell ()
 
 @property (strong) UITextField *text;
+@property (strong) UITapGestureRecognizer *tgr;
 
 @end
 
@@ -19,6 +20,7 @@
 
 @synthesize item=_item;
 @synthesize text=_text;
+@synthesize tgr=_tgr;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -35,7 +37,6 @@
 
 - (IBAction)longPress:(id)sender
 {
-    NSLog(@"got a longPress:%@", sender);
     UILongPressGestureRecognizer *gr = (UILongPressGestureRecognizer *)sender;
     
     if (CGRectContainsPoint(self.accessoryView.bounds, [gr locationInView:self.accessoryView])
@@ -110,6 +111,11 @@ CheckovTableViewCell *editingCell;
     UITableView *tv = (UITableView *)self.superview;
     
     [tv scrollToRowAtIndexPath:[tv indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    _tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editTapDetected:)];
+    
+    UIView *sv = (UIView *)[self.window.subviews objectAtIndex:0];
+    [sv addGestureRecognizer:_tgr];
 }
 
 - (void)stopEditing
@@ -130,6 +136,9 @@ CheckovTableViewCell *editingCell;
     
     self.textLabel.hidden = NO;
     editingCell = nil;
+
+    UIView *sv = (UIView *)[self.window.subviews objectAtIndex:0];
+    [sv removeGestureRecognizer:_tgr];
 }
 
 + (void)stopEditing
@@ -141,6 +150,18 @@ CheckovTableViewCell *editingCell;
 {
     return (bool)editingCell;
 }
+
+- (IBAction)editTapDetected:(id)sender
+{
+    UITapGestureRecognizer *tgr = (UITapGestureRecognizer *)sender;
+    
+    if (tgr.view != self) {
+        [CheckovTableViewCell stopEditing];
+    } else {
+        tgr.cancelsTouchesInView = NO;
+    }
+}
+
 
 #pragma mark UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
