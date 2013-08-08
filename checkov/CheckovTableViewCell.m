@@ -19,6 +19,7 @@
 @implementation CheckovTableViewCell
 
 @synthesize item=_item;
+@synthesize tableView=_tableView;
 @synthesize text=_text;
 @synthesize tgr=_tgr;
 
@@ -41,11 +42,9 @@
     
     if (CGRectContainsPoint(self.accessoryView.bounds, [gr locationInView:self.accessoryView])
             && !_item.isDefault) {
-        UITableView *tv = (UITableView *)self.superview;
-        [tv.delegate tableView:tv accessoryButtonTappedForRowWithIndexPath:[tv indexPathForCell:self]];        
+        [_tableView.delegate tableView:_tableView accessoryButtonTappedForRowWithIndexPath:[_tableView indexPathForCell:self]];
     } else {
-        UITableView *tv = (UITableView *)self.superview;
-        CheckovTableViewCell *tvc = (CheckovTableViewCell *)[tv cellForRowAtIndexPath:[tv indexPathForSelectedRow]];
+        CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_tableView cellForRowAtIndexPath:[_tableView indexPathForSelectedRow]];
         
         if (_item.isDefault || tvc.item == self.item) {
             [self startEditing];
@@ -72,13 +71,11 @@
     [super touchesEnded:touches withEvent:event];
     
     UITouch *t = [touches anyObject];
-    UITableView *tv = (UITableView *)self.superview;
-    CheckovTableViewCell *tvc = (CheckovTableViewCell *)[tv cellForRowAtIndexPath:[tv indexPathForSelectedRow]];
+    CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_tableView cellForRowAtIndexPath:[_tableView indexPathForSelectedRow]];
     
     if (t.view == self.accessoryView && !_item.isDefault) {
         if (t.tapCount == 1) {
-            UITableView *tv = (UITableView *)self.superview;
-            [tv.delegate tableView:tv accessoryButtonTappedForRowWithIndexPath:[tv indexPathForCell:self]];
+            [_tableView.delegate tableView:_tableView accessoryButtonTappedForRowWithIndexPath:[_tableView indexPathForCell:self]];
         }
     } else if (t.tapCount == 1 && (_item.isDefault || tvc.item == self.item)) {
         [self startEditing];
@@ -108,9 +105,7 @@ CheckovTableViewCell *editingCell;
     
     editingCell = self;
     
-    UITableView *tv = (UITableView *)self.superview;
-    
-    [tv scrollToRowAtIndexPath:[tv indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [_tableView scrollToRowAtIndexPath:[_tableView indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     _tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editTapDetected:)];
     

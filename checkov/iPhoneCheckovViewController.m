@@ -37,7 +37,7 @@
 - (IBAction)deleteClicked:(id)sender
 {
     if ([deleteButton.titleLabel.text isEqualToString:@"Confirm"]) {
-        UITableView *tv = (UITableView *)self.checkovCell.superview;
+        UITableView *tv = self.checkovCell.tableView;
         
         [self.viewController deleteCheckoff:[tv indexPathForCell:self.checkovCell].row];
 

@@ -12,6 +12,7 @@
 @interface CheckovTableViewCell : UITableViewCell <UITextFieldDelegate>
 
 @property (strong) CheckovItem *item;
+@property (strong) UITableView *tableView;
 
 + (void)stopEditing;
 + (bool)isEditing;

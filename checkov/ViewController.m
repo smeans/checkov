@@ -269,6 +269,7 @@
                              
     if (!cell) {
         cell = [[CheckovTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CheckovCell"];
+        cell.tableView = tableView;
         cell.textLabel.font = [self cellFont];
     }
     
