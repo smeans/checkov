@@ -40,7 +40,6 @@
 		77E35FD61778DC51005B497B /* 27-circle-north@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E35FD51778DC51005B497B /* 27-circle-north@2x.png */; };
 		77E35FD9177B17F7005B497B /* BooleanCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E35FD8177B17F7005B497B /* BooleanCalendar.m */; };
 		77E35FDC177B3124005B497B /* CheckoffCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E35FDB177B3124005B497B /* CheckoffCalendarView.m */; };
-		77F5CADC1C469CEB000A8800 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 77F5CADB1C469CEB000A8800 /* LICENSE.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,7 +94,6 @@
 		77E35FD8177B17F7005B497B /* BooleanCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanCalendar.m; sourceTree = "<group>"; };
 		77E35FDA177B3124005B497B /* CheckoffCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoffCalendarView.h; sourceTree = "<group>"; };
 		77E35FDB177B3124005B497B /* CheckoffCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoffCalendarView.m; sourceTree = "<group>"; };
-		77F5CADB1C469CEB000A8800 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +151,6 @@
 		77E35FA81778BB25005B497B /* checkov */ = {
 			isa = PBXGroup;
 			children = (
-				77F5CADB1C469CEB000A8800 /* LICENSE.txt */,
 				77ACB7C4177E31CC004B14A0 /* checkov.entitlements */,
 				77E35FB11778BB25005B497B /* AppDelegate.h */,
 				77E35FB21778BB25005B497B /* AppDelegate.m */,
@@ -266,7 +263,6 @@
 				77E35FB71778BB25005B497B /* Default@2x.png in Resources */,
 				77E35FB91778BB25005B497B /* Default-568h@2x.png in Resources */,
 				77E35FBC1778BB25005B497B /* MainStoryboard_iPhone.storyboard in Resources */,
-				77F5CADC1C469CEB000A8800 /* LICENSE.txt in Resources */,
 				77E35FBF1778BB25005B497B /* MainStoryboard_iPad.storyboard in Resources */,
 				77E35FD01778DB17005B497B /* 33-circle-plus@2x.png in Resources */,
 				77E35FD21778DB22005B497B /* 34-circle-minus@2x.png in Resources */,
