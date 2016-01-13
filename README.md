@@ -1,0 +1,2 @@
+# checkov: a daily event tracker
+This app was originally released on the iTunes App Store in 2013 (and is still there, if you want to pay $1.99 to avoid building it). I gave a presentation at the Atlanta iOS Developer's meetup on 1/12/2016 where we reviewed the code and discussed how it could be improved. Feel free to download it, play with it, and incorporate it in your own apps!
