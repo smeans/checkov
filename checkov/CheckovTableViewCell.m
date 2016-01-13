@@ -3,7 +3,28 @@
 //  checkov
 //
 //  Created by Scott Means on 6/29/13.
-//  Copyright (c) 2013 Scott Means. All rights reserved.
+//
+// The MIT License (MIT)
+// 
+// Copyright (c) 2016 W. Scott Means
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //
 
 #import "CheckovTableViewCell.h"
@@ -19,7 +40,7 @@
 @implementation CheckovTableViewCell
 
 @synthesize item=_item;
-@synthesize tableView=_tableView;
+@synthesize localTableView=_localTableView;
 @synthesize text=_text;
 @synthesize tgr=_tgr;
 
@@ -42,9 +63,9 @@
     
     if (CGRectContainsPoint(self.accessoryView.bounds, [gr locationInView:self.accessoryView])
             && !_item.isDefault) {
-        [_tableView.delegate tableView:_tableView accessoryButtonTappedForRowWithIndexPath:[_tableView indexPathForCell:self]];
+        [_localTableView.delegate tableView:_localTableView accessoryButtonTappedForRowWithIndexPath:[_localTableView indexPathForCell:self]];
     } else {
-        CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_tableView cellForRowAtIndexPath:[_tableView indexPathForSelectedRow]];
+        CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_localTableView cellForRowAtIndexPath:[_localTableView indexPathForSelectedRow]];
         
         if (_item.isDefault || tvc.item == self.item) {
             [self startEditing];
@@ -71,11 +92,11 @@
     [super touchesEnded:touches withEvent:event];
     
     UITouch *t = [touches anyObject];
-    CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_tableView cellForRowAtIndexPath:[_tableView indexPathForSelectedRow]];
+    CheckovTableViewCell *tvc = (CheckovTableViewCell *)[_localTableView cellForRowAtIndexPath:[_localTableView indexPathForSelectedRow]];
     
     if (t.view == self.accessoryView && !_item.isDefault) {
         if (t.tapCount == 1) {
-            [_tableView.delegate tableView:_tableView accessoryButtonTappedForRowWithIndexPath:[_tableView indexPathForCell:self]];
+            [_localTableView.delegate tableView:_localTableView accessoryButtonTappedForRowWithIndexPath:[_localTableView indexPathForCell:self]];
         }
     } else if (t.tapCount == 1 && (_item.isDefault || tvc.item == self.item)) {
         [self startEditing];
@@ -105,7 +126,7 @@ CheckovTableViewCell *editingCell;
     
     editingCell = self;
     
-    [_tableView scrollToRowAtIndexPath:[_tableView indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [_localTableView scrollToRowAtIndexPath:[_localTableView indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     _tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editTapDetected:)];
     
